@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Docker</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+        
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0077be, #00d4ff);
+            margin: 0;
+            font-family: "East Sea Dokdo", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            color: white;
+            animation: fadeIn 2s ease-in;
+        }
+        h1 {
+            margin-top:-3rem;
+            font-size: 20rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px #005f99;
+            animation: float 3s ease-in-out infinite;
+        }
+        p {
+            font-size: 2rem;
+            text-shadow: 1px 1px #005f99;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            animation: rise 10s infinite ease-in-out;
+            opacity: 0.5;
+        }
+        @keyframes rise {
+            0% { bottom: -50px; }
+            100% { bottom: 100vh; }
+        }
+        .fish {
+            position: absolute;
+            font-size: 8rem;
+            animation: swim 10s infinite linear;
+        }
+        @keyframes swim {
+            from { transform: translateX(100vw); }
+            to { transform: translateX(-100vw); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, Docker!</h1>
+    </div>
+    <script>
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            const size = Math.random() * 50 + 10 + 'px';
+            bubble.style.width = size;
+            bubble.style.height = size;
+            bubble.style.left = Math.random() * 100 + 'vw';
+            document.body.appendChild(bubble);
+
+            setTimeout(() => {
+                bubble.remove();
+            }, 10000);
+        }
+
+        function createFish() {
+            const fish = document.createElement('div');
+            fish.classList.add('fish');
+            const animals = ['🐠', '🐟', '🐬', '🦑', '🐙', '🦀', '🐋', '🦈', '🐢', '🐡', '🎣', '🦐', '🧜🏽‍♂️'];
+            fish.textContent = animals[Math.floor(Math.random() * animals.length)];
+            fish.style.top = Math.random() * 100 + 'vh';
+            document.body.appendChild(fish);
+
+            setTimeout(() => {
+                fish.remove();
+            }, 10000);
+        }
+
+        setInterval(createBubble, 500);
+        setInterval(createFish, 2000);
+    </script>
+</body>
+</html>
